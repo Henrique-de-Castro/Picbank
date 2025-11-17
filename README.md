@@ -1,2 +1,4 @@
 # Picbank
-Projeto para ensino de germinares
+
+#### Para iniciar o back-end(json-server)
+  * executar o campo 'npm start' na pasta api
