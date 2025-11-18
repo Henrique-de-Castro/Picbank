@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './components/header/header.module';
 import { RouterModule } from '@angular/router';
+import { TableModule } from './table/table.module';
+import { BotaoModule } from './botao/botao.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +17,8 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     RouterModule,
     HeaderModule,
+    TableModule,
+    BotaoModule
   ],
   bootstrap: [AppComponent],
 })
