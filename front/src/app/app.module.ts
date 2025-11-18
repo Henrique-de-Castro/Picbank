@@ -8,6 +8,7 @@ import { HeaderModule } from './components/header/header.module';
 import { RouterModule } from '@angular/router';
 import { TableModule } from './table/table.module';
 import { BotaoModule } from './botao/botao.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { BotaoModule } from './botao/botao.module';
     RouterModule,
     HeaderModule,
     TableModule,
-    BotaoModule
+    BotaoModule,
+    HttpClientModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -13,6 +13,41 @@
       "descricao": "carto de crédito",
       "valor": 250,
       "data": "2025-02-21"
+    },
+    {
+      "id": "3",
+      "tipo": "saida",
+      "descricao": "carto de crédito",
+      "valor": 250,
+      "data": "2025-02-21"
+    },
+        {
+      "id": "4",
+      "tipo": "entrada",
+      "metodo": "boleto",
+      "valor": 30,
+      "data": "2025-05-22"
+    },
+    {
+      "id": "5",
+      "tipo": "saida",
+      "descricao": "pix",
+      "valor": 20,
+      "data": "2025-01-21"
+    },
+    {
+      "id": "6",
+      "tipo": "saida",
+      "descricao": "cartão de débito",
+      "valor": 250.1,
+      "data": "2025-02-21"
+    },
+        {
+      "id": "7",
+      "tipo": "entrada",
+      "descricao": "TED",
+      "valor": 34.1,
+      "data": "2025-05-09"
     }
   ]
 }
