@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="informacoes" class="mat-elevation-z8">
+
+  <!-- ID -->
+  <ng-container matColumnDef="id">
+    <th style="width: 50px;" mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let item"> {{ item.id }} </td>
+  </ng-container>
+
+  <!-- tipo -->
+  <ng-container matColumnDef="tipo">
+    <th style="width: 90px;" mat-header-cell *matHeaderCellDef> Tipo </th>
+    <td mat-cell *matCellDef="let item"> {{ item.tipo }} </td>
+  </ng-container>
+
+  <!-- método -->
+  <ng-container matColumnDef="metodo">
+    <th style="width: 110px;" mat-header-cell *matHeaderCellDef> Método </th>
+    <td mat-cell *matCellDef="let item"> {{ item.metodo }} </td>
+  </ng-container>
+
+  <!-- valor -->
+  <ng-container matColumnDef="valor">
+    <th style="width: 90px;" mat-header-cell *matHeaderCellDef> Valor </th>
+    <td mat-cell *matCellDef="let item"> R$ {{ item.valor }} </td>
+  </ng-container>
+
+  <!-- data -->
+  <ng-container matColumnDef="data">
+    <th mat-header-cell *matHeaderCellDef> Data </th>
+    <td mat-cell *matCellDef="let item"> {{ item.data }} </td>
+  </ng-container>
+
+  <!-- cabeçalho -->
+  <tr mat-header-row *matHeaderRowDef="colunasExibidas"></tr>
+
+  <!-- linhas -->
+  <tr mat-row *matRowDef="let linha; columns: colunasExibidas"></tr>
+
+</table>

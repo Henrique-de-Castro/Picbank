@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './components/header/header.module';
 import { RouterModule } from '@angular/router';
+import { TableModule } from './components/table/table.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     RouterModule,
     HeaderModule,
+    TableModule
   ],
   bootstrap: [AppComponent],
 })
