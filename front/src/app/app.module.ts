@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './components/header/header.module';
 import { RouterModule } from '@angular/router';
 import { TableModule } from './components/table/table.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,8 @@ import { TableModule } from './components/table/table.module';
     BrowserAnimationsModule,
     RouterModule,
     HeaderModule,
-    TableModule
+    TableModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent],
 })
