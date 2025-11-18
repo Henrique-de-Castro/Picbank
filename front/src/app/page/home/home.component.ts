@@ -32,6 +32,22 @@ export class HomeComponent implements OnInit {
       data: '2025-02-21',
     },
   ];
+  DATA_MOCK_2 = [
+    {
+      id: '1',
+      tipo: 'entrada',
+      metodo: 'pix',
+      valor: 3500,
+      data: '2025-02-20',
+    },
+    {
+      id: '2',
+      tipo: 'saida',
+      descricao: 'carto de crédito',
+      valor: 250,
+      data: '2025-02-21',
+    },
+  ];
   data!: TransacaoDataList;
 
   constructor(private service: TransacoesService) {}
@@ -41,6 +57,13 @@ export class HomeComponent implements OnInit {
   }
 
   listarTransacoes(): void {
+    this.service.listarTransacoes(1, 5).subscribe((data) => {
+      this.data = data;
+      console.log(this.data);
+    });
+  }
+
+  listarTransacoes2(): void {
     this.service.listarTransacoes(1, 5).subscribe((data) => {
       this.data = data;
       console.log(this.data);
