@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { TransacoesService } from 'src/app/core';
 
 interface TransacaoDataList {
-  data: any[];
-  first: number;
-  items: number;
-  last: number;
-  next: number;
-  pages: number;
+  data: any[]; //transacoes, sao os objetos do json
+  first: number; //paginacao
+  last: number; //paginacao
+  next: number; //paginacao
+  items: number; //quantos itens existem
+  pages: number; //total de paginas
 }
 
 @Component({
@@ -16,6 +16,7 @@ interface TransacaoDataList {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  //demonstracao dos dados que estamos recebendo
   DATA_MOCK = [
     {
       id: '1',
@@ -27,12 +28,15 @@ export class HomeComponent implements OnInit {
     {
       id: '2',
       tipo: 'saida',
-      descricao: 'carto de crédito',
+      descricao: 'cartao de crédito',
       valor: 250,
       data: '2025-02-21',
     },
   ];
-  data!: TransacaoDataList;
+
+  // o ! é para mostrar ao typescript que essa variavel nao foi inicializada
+  listaDados!: TransacaoDataList; //variavel que recebe os dados vindos do servico no formato TransacaoDatalist(a interface)
+  dataSource: any[] = []; //alimentar a tabela no HTML
 
   constructor(private service: TransacoesService) {}
 
@@ -42,8 +46,10 @@ export class HomeComponent implements OnInit {
 
   listarTransacoes(): void {
     this.service.listarTransacoes(1, 5).subscribe((data) => {
-      this.data = data;
-      console.log(this.data);
+      this.listaDados = data;
+      this.dataSource = data.data
+
+      console.log(this.dataSource);
     });
   }
 }
