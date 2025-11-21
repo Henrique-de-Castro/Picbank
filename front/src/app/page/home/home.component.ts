@@ -32,8 +32,10 @@ export class HomeComponent implements OnInit {
       data: '2025-02-21',
     },
   ];
-dataSource: any;
-  data!: TransacaoDataList;
+
+  dataSource: any;
+
+  lista!: TransacaoDataList | null;
 
   constructor(private service: TransacoesService) {}
 
@@ -43,8 +45,13 @@ dataSource: any;
 
   listarTransacoes(): void {
     this.service.listarTransacoes(1, 5).subscribe((data) => {
-      this.data = data;
-      console.log(this.data);
+      this.lista = data;
+      console.log(this.lista);
     });
   }
+
+  removerTransacoes(): void {
+    this.lista = null;
+  }
+
 }
