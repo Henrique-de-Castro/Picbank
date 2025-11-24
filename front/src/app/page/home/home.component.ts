@@ -45,8 +45,7 @@ export class HomeComponent implements OnInit {
 
   listarTransacoes(): void {
     this.service.listarTransacoes(1, 5).subscribe((data) => {
-      this.lista = data;
-      console.log(this.lista);
+      this.dataSource = Array.isArray(data) ? data : data?.data || [];
     });
   }
 

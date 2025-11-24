@@ -10,7 +10,7 @@ export class TransacoesService {
 
   listarTransacoes(page: number, perPage: number): Observable<any> {
     return this.http.get(
-      `http://localhost:3000/transacoes?_page=${page}&_per_page=${perPage}`
+      `http://localhost:3000/transacoes?_page=${page}&_limit=${perPage}`
     );
   }
 }

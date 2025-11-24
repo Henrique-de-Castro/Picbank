@@ -1,1 +1,10 @@
-<app-table [informacoes]="lista?.data || []"></app-table>
+<app-table [informacoes]="dataSource"></app-table>
+
+<div>
+    <mat-paginator
+        [length]="10"
+        [pageSize]="1"
+        [pageSizeOptions]="[1, 2, 3, 4, 5]"
+        aria-label="Select page">
+    </mat-paginator>
+</div>
