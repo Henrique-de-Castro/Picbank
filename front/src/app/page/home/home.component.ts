@@ -52,5 +52,4 @@ export class HomeComponent implements OnInit {
   removerTransacoes(): void {
     this.lista = null;
   }
-
 }
