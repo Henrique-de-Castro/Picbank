@@ -1,4 +1,19 @@
-<main class="main">
-  <botao-adicionar></botao-adicionar>
-  <tabela [dadosTabela]="dataSource"></tabela>
-</main>
+<div class="content">
+
+  <main class="main">
+
+    <botao-adicionar></botao-adicionar>
+
+    <div class="table">
+        <tabela [dadosTabela]="listaTransacoes"></tabela>
+
+        <paginador
+          (pageP)="receberPage($event)"
+          (perPageP)="receberPerPage($event)"
+          [length]="dados.items">
+        </paginador>
+    </div>
+
+  </main>
+
+</div>

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { TransacoesService } from 'src/app/core';
 
-interface TransacaoDataList {
-  data: any[]; //transacoes, sao os objetos do json
-  first: number; //paginacao
-  last: number; //paginacao
-  next: number; //paginacao
-  items: number; //quantos itens existem
-  pages: number; //total de paginas
+interface TransacoesDataList {
+  data: any[];
+  first: number;
+  last: number;
+  next: number;
+  items: number;
+  pages: number;
 }
 
 @Component({
@@ -16,40 +17,36 @@ interface TransacaoDataList {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  //demonstracao dos dados que estamos recebendo
-  DATA_MOCK = [
-    {
-      id: '1',
-      tipo: 'entrada',
-      metodo: 'pix',
-      valor: 3500,
-      data: '2025-02-20',
-    },
-    {
-      id: '2',
-      tipo: 'saida',
-      descricao: 'cartao de crédito',
-      valor: 250,
-      data: '2025-02-21',
-    },
-  ];
 
-  // o ! é para mostrar ao typescript que essa variavel nao foi inicializada
-  listaDados!: TransacaoDataList; //variavel que recebe os dados vindos do servico no formato TransacaoDatalist(a interface)
-  dataSource: any[] = []; //alimentar a tabela no HTML
+  dados!: TransacoesDataList;
+  listaTransacoes: any[] = [];
+
+  page!: number;
+  perPage!: number;
+  pageSize!: number;
 
   constructor(private service: TransacoesService) {}
 
   ngOnInit(): void {
-    this.listarTransacoes();
+    this.buscarTransacoes();
   }
 
-  listarTransacoes(): void {
-    this.service.listarTransacoes(1, 5).subscribe((data) => {
-      this.listaDados = data;
-      this.dataSource = data.data
+  receberPage(pageIndex: number) {
+    this.page = pageIndex;
+    this.buscarTransacoes();
+  }
 
-      console.log(this.dataSource);
+  receberPerPage(pageSize: number) {
+    this.perPage = pageSize;
+    this.buscarTransacoes();
+  }
+
+
+  buscarTransacoes(): void {
+    this.service.listarTransacoes(this.page, this.perPage).subscribe((respostaAPI) => {
+      this.dados = respostaAPI;
+      this.listaTransacoes = respostaAPI.data;
+      console.log(respostaAPI);
     });
   }
 }
