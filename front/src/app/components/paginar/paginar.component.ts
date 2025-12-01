@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -6,20 +6,18 @@ import { PageEvent } from '@angular/material/paginator';
   templateUrl: './paginar.component.html',
   styleUrls: ['./paginar.component.scss']
 })
+export class PaginarComponent {
 
-export class PaginarComponent implements OnInit {
+  totalItems: number = 7;
+  itemsPerPage: number = 1;
+  opItemsPerPage: number[] = [1, 2, 3, 4, 5, 6, 7];
 
-  totalItems: number = 100;
-  itemsPerPage: number = 5;
-  opItemsPerPage: number[] = [5, 10, 20];
-
-  @Output() page = new EventEmitter<number>();
-  @Output() perPage = new EventEmitter<number>();
-
-  ngOnInit(): void {}
+  @Output() change = new EventEmitter<{ page: number, perPage: number }>();
 
   onPageChange(event: PageEvent): void {
-    this.page.emit(event.pageIndex + 1); // base 1
-    this.perPage.emit(event.pageSize);
+    this.change.emit({
+      page: event.pageIndex + 1,   
+      perPage: event.pageSize
+    });
   }
 }

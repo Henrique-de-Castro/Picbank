@@ -8,7 +8,6 @@ import { HeaderModule } from './components/header/header.module';
 import { RouterModule } from '@angular/router';
 import { TableModule } from './components/table/table.module';
 import { HttpClientModule } from '@angular/common/http';
-import { PaginarModule } from './components/paginar/paginar.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +18,6 @@ import { PaginarModule } from './components/paginar/paginar.module';
     RouterModule,
     HeaderModule,
     TableModule,
-    PaginarModule,
     HttpClientModule
   ],
   bootstrap: [AppComponent],
