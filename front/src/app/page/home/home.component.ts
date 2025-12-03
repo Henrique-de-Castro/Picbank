@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransacoesService } from 'src/app/core';
+import { TransacoesService } from 'src/app/core/services/transacoes.service';
 
 @Component({
   selector: 'app-home',
@@ -7,28 +7,30 @@ import { TransacoesService } from 'src/app/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   dataSource: any[] = [];
 
-  currentPage: number = 1;
-  currentPerPage: number = 1;
+  currentPage = 1;
+  currentPerPage = 1;
+  totalItems = 0;
 
   constructor(private service: TransacoesService) {}
 
   ngOnInit(): void {
-    this.listarTransacoes();
+    this.loadTransacoes();
   }
 
-  listarTransacoes(): void {
-    this.service.listarTransacoes(this.currentPage, this.currentPerPage)
-      .subscribe((data) => {
-        this.dataSource = Array.isArray(data) ? data : data?.data || [];
+  loadTransacoes() {
+    this.service
+      .listarTransacoes(this.currentPage, this.currentPerPage)
+      .subscribe((res: any) => {
+        this.dataSource = res.data || res; 
+        this.totalItems = res.items || res.total || 67; 
       });
   }
 
-  onPaginationChange(event: { page: number, perPage: number }): void {
+  onPaginationChange(event: any) {
     this.currentPage = event.page;
     this.currentPerPage = event.perPage;
-    this.listarTransacoes();
+    this.loadTransacoes();
   }
 }

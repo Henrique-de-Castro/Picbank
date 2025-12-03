@@ -1,0 +1,45 @@
+<div style="padding: 2rem 15rem;">
+  <form [formGroup]="form">
+
+    <h1>Nova Transação</h1>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Tipo</mat-label>
+      <input matInput formControlName="tipo" placeholder="ex: entrada, saída">
+    </mat-form-field>
+
+    <br /><br />
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>metodo</mat-label>
+      <input matInput formControlName="metodo">
+    </mat-form-field>
+
+    <br /><br />
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" formControlName="valor">
+    </mat-form-field>
+
+    <br /><br />
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Data</mat-label>
+      <input matInput type="date" formControlName="data">
+    </mat-form-field>
+
+    <br /><br />
+
+    <div style="display: flex; gap: 1rem;">
+      <button mat-raised-button color="warn" (click)="cancelar()">
+        Cancelar
+      </button>
+
+      <button mat-raised-button color="primary" (click)="salvar()">
+        Salvar
+      </button>
+    </div>
+
+  </form>
+</div>

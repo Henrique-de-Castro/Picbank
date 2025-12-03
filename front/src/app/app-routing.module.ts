@@ -8,6 +8,13 @@ const routes: Routes = [
       import('./page/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'transacoes/nova',
+    loadChildren: () =>
+      import('./components/transacoes/transacoes.module').then(
+        (m) => m.TransacoesModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },

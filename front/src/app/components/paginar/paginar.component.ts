@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paginar',
@@ -8,15 +9,25 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class PaginarComponent {
 
-  totalItems: number = 7;
-  itemsPerPage: number = 1;
-  opItemsPerPage: number[] = [1, 2, 3, 4, 5, 6, 7];
+  constructor(private router: Router) {}
+
+  irParaForms() {
+    this.router.navigate(['/transacoes/nova']);
+  }
+
+  removerTransacao() {
+    console.log('Removido!!!!!');
+  }
+
+  @Input() totalItems: number = 0;
+  @Input() itemsPerPage: number = 1;
+  @Input() opItemsPerPage: number[] = [];
 
   @Output() change = new EventEmitter<{ page: number, perPage: number }>();
 
   onPageChange(event: PageEvent): void {
     this.change.emit({
-      page: event.pageIndex + 1,   
+      page: event.pageIndex + 1,
       perPage: event.pageSize
     });
   }

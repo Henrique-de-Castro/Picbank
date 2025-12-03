@@ -1,5 +1,8 @@
 <app-table [informacoes]="dataSource"></app-table>
 
 <app-paginar
+  [totalItems]="totalItems"
+  [itemsPerPage]="currentPerPage"
+  [opItemsPerPage]="[1, 2, 3, 4, 5, 10]"
   (change)="onPaginationChange($event)">
 </app-paginar>
