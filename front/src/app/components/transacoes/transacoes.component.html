@@ -36,9 +36,14 @@
         Cancelar
       </button>
 
-      <button mat-raised-button color="primary" (click)="salvar()">
+      <button mat-raised-button
+        color="primary"
+        (click)="salvar()"
+        [disabled]="form.invalid"
+        [class.botao-inativo]="form.invalid">
         Salvar
       </button>
+
     </div>
 
   </form>
