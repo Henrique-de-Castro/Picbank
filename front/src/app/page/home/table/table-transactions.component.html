@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dadosTabela">
+<table mat-table [dataSource]="transactionsData">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -30,7 +30,7 @@
   </ng-container>
 
 
-  <tr mat-header-row *matHeaderRowDef="disposicaoColunas"></tr>
-  <tr mat-row *matRowDef="let row; columns: disposicaoColunas;"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 </table>

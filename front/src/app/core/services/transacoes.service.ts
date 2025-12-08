@@ -13,4 +13,9 @@ export class TransacoesService {
       `http://localhost:3000/transacoes?_page=${page}&_per_page=${perPage}`
     );
   }
+  salvarTransacoes(body: any): Observable<any> {
+    return this.http.post(
+      `http://localhost:3000/transacoes`, body,
+    );
+  }
 }

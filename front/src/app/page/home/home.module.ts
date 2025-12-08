@@ -3,13 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { TabelaModule } from './tabela/tabela.module';
-import { BotaoAdicionarModule } from './botao-adicionar/botao-adicionar.module';
-import { PaginadorModule } from './paginador/paginador.module';
-
+import { TableTransactionsModule } from './table/table-transactions.module';
+import { BtnAddModule } from './btn-add/btn-add.module';
+import { PaginatorModule } from './paginator/paginator.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, TabelaModule, BotaoAdicionarModule, PaginadorModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    TableTransactionsModule,
+    BtnAddModule,
+    PaginatorModule
+  ],
 })
 export class HomeModule {}

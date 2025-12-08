@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BotaoAdicionarComponent } from './botao-adicionar.component';
+import { PaginatorComponent } from './paginator.component';
 
-describe('BotaoAdicionarComponent', () => {
-  let component: BotaoAdicionarComponent;
-  let fixture: ComponentFixture<BotaoAdicionarComponent>;
+describe('PaginatorComponent', () => {
+  let component: PaginatorComponent;
+  let fixture: ComponentFixture<PaginatorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BotaoAdicionarComponent ]
+      declarations: [ PaginatorComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BotaoAdicionarComponent);
+    fixture = TestBed.createComponent(PaginatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,39 @@
+<form class="registerTransaction" [formGroup]="form">
+  <div>
+    <h1>Registrar Transação</h1>
+    
+  </div>
+
+
+  <div class="inputsTransaction">
+      <mat-form-field class="example-full-width">
+        <mat-label>Tipo</mat-label>
+        <input matInput value="" formControlName="tipo">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Método</mat-label>
+        <input matInput value="" formControlName="metodo">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Valor</mat-label>
+        <input matInput value="" formControlName="valor">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Data</mat-label>
+        <input matInput value="" formControlName="data" type="date">
+      </mat-form-field>
+  </div>
+
+  <div class="buttonsTransaction">
+    <div class="example-button-row">
+        <button [disabled]="form.invalid" mat-raised-button color="{{ enabledButton }}" id="saveButtonTransaction" (click)="save()">Salvar</button>
+    </div>
+    <div class="example-button-row">
+        <button mat-raised-button color="warn" routerLink="/home">Cancelar</button>
+    </div>
+  </div>
+
+</form>

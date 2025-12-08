@@ -209,6 +209,13 @@
       "metodo": "pix",
       "valor": 350,
       "data": "2025-11-20"
+    },
+    {
+      "id": "ca26",
+      "tipo": "saida",
+      "metodo": "cartao",
+      "valor": "100-",
+      "data": "2025-12-02"
     }
   ]
 }

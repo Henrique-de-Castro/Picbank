@@ -5,13 +5,19 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./page/home/home.module').then((m) => m.HomeModule),
+      import('./page/home/home.module').then((m) => m.HomeModule)
+  },
+  {
+    path: 'create',
+    loadChildren: () =>
+      import('./page/create/create.module').then((m) => m.CreateModule)
   },
   {
     path: '**',
-    redirectTo: 'home',
-  },
+    redirectTo: 'home'
+  }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -2,16 +2,16 @@
 
   <main class="main">
 
-    <botao-adicionar></botao-adicionar>
+    <btn-add></btn-add>
 
     <div class="table">
-        <tabela [dadosTabela]="listaTransacoes"></tabela>
+        <table-transactions [transactionsData]="transactionsList"></table-transactions>
 
-        <paginador
-          (pageP)="receberPage($event)"
-          (perPageP)="receberPerPage($event)"
-          [length]="dados.items">
-        </paginador>
+        <paginator
+          (pageP)="setPage($event)"
+          (perPageP)="setPerPage($event)"
+          [length]="dataTransactions.items">
+        </paginator>
     </div>
 
   </main>

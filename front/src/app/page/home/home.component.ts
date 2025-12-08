@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
 import { TransacoesService } from 'src/app/core';
 
 interface TransacoesDataList {
@@ -12,14 +11,14 @@ interface TransacoesDataList {
 }
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
-  dados!: TransacoesDataList;
-  listaTransacoes: any[] = [];
+  dataTransactions!: TransacoesDataList;
+  transactionsList: any[] = [];
 
   page!: number;
   perPage!: number;
@@ -28,25 +27,25 @@ export class HomeComponent implements OnInit {
   constructor(private service: TransacoesService) {}
 
   ngOnInit(): void {
-    this.buscarTransacoes();
+    this.listTransactions();
   }
 
-  receberPage(pageIndex: number) {
+  setPage(pageIndex: number) {
     this.page = pageIndex;
-    this.buscarTransacoes();
+    this.listTransactions();
   }
 
-  receberPerPage(pageSize: number) {
+  setPerPage(pageSize: number) {
     this.perPage = pageSize;
-    this.buscarTransacoes();
+    this.listTransactions();
   }
 
 
-  buscarTransacoes(): void {
-    this.service.listarTransacoes(this.page, this.perPage).subscribe((respostaAPI) => {
-      this.dados = respostaAPI;
-      this.listaTransacoes = respostaAPI.data;
-      console.log(respostaAPI);
+  listTransactions(): void {
+    this.service.listarTransacoes(this.page, this.perPage).subscribe((APIresponse) => {
+      this.dataTransactions = APIresponse;
+      this.transactionsList = APIresponse.data;
+      console.log(APIresponse);
     });
   }
 }
