@@ -13,6 +13,11 @@ const routes: Routes = [
       import('./page/create/create.module').then((m) => m.CreateModule)
   },
   {
+    path: 'editar/:id',
+    loadChildren: () =>
+      import('./page/edit/edit.module').then((m) => m.EditModule),
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }

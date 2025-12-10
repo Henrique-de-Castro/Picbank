@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" *ngIf="!loading">
 
   <main class="main">
 
@@ -16,4 +16,7 @@
 
   </main>
 
+</div>
+<div class="loading">
+    <app-loading [show]="loading"></app-loading>
 </div>

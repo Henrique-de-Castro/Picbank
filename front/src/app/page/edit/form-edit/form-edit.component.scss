@@ -1,0 +1,33 @@
+.registerTransaction {
+  background-color: #FEFEFE;
+  width: 60vw;
+  height: 55vh;
+  display: flex;
+  gap: 3vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+}
+.example-full-width {
+  background-color: #F5F5F7;
+  border-radius: 20px;
+}
+.inputsTransaction {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 30px;
+}
+.registerTransaction h1 {
+  font-size: 32px;
+}
+.buttonsTransaction {
+  display: flex;
+  gap: 1vw;
+}
+.example-button-row button{
+  width: 10vw;
+}
+.example-full-width {
+  width: 25vw;
+}

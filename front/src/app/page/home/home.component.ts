@@ -23,11 +23,13 @@ export class HomeComponent implements OnInit {
   page!: number;
   perPage!: number;
   pageSize!: number;
+  loading: boolean = false;
 
   constructor(private service: TransacoesService) {}
 
   ngOnInit(): void {
     this.listTransactions();
+    this.loading = true;
   }
 
   setPage(pageIndex: number) {
@@ -40,12 +42,12 @@ export class HomeComponent implements OnInit {
     this.listTransactions();
   }
 
-
   listTransactions(): void {
     this.service.listarTransacoes(this.page, this.perPage).subscribe((APIresponse) => {
       this.dataTransactions = APIresponse;
       this.transactionsList = APIresponse.data;
       console.log(APIresponse);
+      this.loading = false;
     });
   }
 }

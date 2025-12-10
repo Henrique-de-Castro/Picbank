@@ -8,6 +8,7 @@ import { HeaderModule } from './components/header/header.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormModule } from './page/create/form/form.module';
+import { LoadingModule } from './components/loading/loading.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { FormModule } from './page/create/form/form.module';
     RouterModule,
     HeaderModule,
     HttpClientModule,
-    FormModule
+    FormModule,
+    LoadingModule
   ],
   bootstrap: [AppComponent],
 })

@@ -11,10 +11,9 @@ import { Router } from '@angular/router';
 export class FormComponent implements OnInit {
 
   form: FormGroup;
-
   enabledButton!: string;
-
   @Input() id!: number;
+  loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private service: TransacoesService, private router: Router) {
     this.form = this.formBuilder.group({
@@ -30,24 +29,25 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
 
   save(): void {
-  if (this.form.valid) {
-    this.service.salvarTransacoes(this.form.value).subscribe({
-      next: (response) => {
-        alert('Transação salva com sucesso!');
-        this.form.reset();
-        this.router.navigate(['/home']);
+    this.loading = true;
 
-        console.log(response);
-      },
-      error: (erro) => {
-        alert('Não foi possível adicionar a transação! Erro na requisição.');
-
-        console.error(erro);
-      }
-    });
+    if (this.form.valid) {
+      this.service.salvarTransacoes(this.form.value).subscribe(
+        {
+          next: (response) => {// console.log(response);
+            alert('Transação salva com sucesso!');
+            this.form.reset();
+            this.loading = false;
+            this.router.navigate(['/home']);
+          },
+          error: (erro) => {// console.error(erro);
+            alert('Não foi possível adicionar a transação! Erro na requisição.');
+            this.loading = false;
+          }
+        }
+      );
+    }
   }
-}
-
 
   onDisabledButton(): string {
     if(this.form.invalid){

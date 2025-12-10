@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'table-transactions',
@@ -8,17 +9,16 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class TableTransactionsComponent implements OnInit {
 
-  //TABELA
-  displayedColumns: string[] = ['id', 'tipo', 'metodo', 'valor', 'data'];
+  displayedColumns: string[] = ['id', 'tipo', 'metodo', 'valor', 'data', 'editar'];
   @Input() transactionsData!: any[]
+  loading: boolean = false;
 
-  //PAGINAÇÃO
   items: number = 5;
   itemsOptions!: [5, 10, 20];
   pages!: number;
   pageEvent!: PageEvent;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,5 +27,8 @@ export class TableTransactionsComponent implements OnInit {
   //PAGINACAO
   setItemsOptions(items: number){
     this.items = items;
+  }
+  sendId(id: number){
+    this.router.navigate(['/editar', id]);
   }
 }
