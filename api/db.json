@@ -1,48 +1,6 @@
 {
   "transacoes": [
     {
-      "tipo": "entrada",
-      "metodo": "pix",
-      "valor": 3500,
-      "data": "2025-02-20",
-      "id": "1"
-    },
-    {
-      "id": "2",
-      "tipo": "saída",
-      "metodo": "cartão de crédito",
-      "valor": 250,
-      "data": "2025-02-21"
-    },
-    {
-      "tipo": "saída",
-      "metodo": "TED",
-      "valor": 250,
-      "data": "2025-02-21",
-      "id": "3"
-    },
-    {
-      "id": "4",
-      "tipo": "entrada",
-      "metodo": "boleto",
-      "valor": 30,
-      "data": "2025-05-22"
-    },
-    {
-      "tipo": "saída",
-      "metodo": "cartão de débito",
-      "valor": 20,
-      "data": "2025-01-21",
-      "id": "5"
-    },
-    {
-      "id": "6",
-      "tipo": "saída",
-      "metodo": "cartão de débito",
-      "valor": 250.1,
-      "data": "2025-02-21"
-    },
-    {
       "id": "7",
       "tipo": "entrada",
       "metodo": "TED",
@@ -204,25 +162,11 @@
       "data": "2025-08-05"
     },
     {
-      "id": "30",
+      "id": "3083",
       "tipo": "entrada",
       "metodo": "pix",
-      "valor": 350,
-      "data": "2025-11-20"
-    },
-    {
-      "id": "bf40",
-      "tipo": "entrada",
-      "metodo": "pix",
-      "valor": "10100000",
-      "data": "2025-12-10"
-    },
-    {
-      "id": "b6cc",
-      "tipo": "saida",
-      "metodo": "pix",
-      "valor": "837.50",
-      "data": "2025-12-08"
+      "valor": "7000",
+      "data": "2025-12-12"
     }
   ]
 }

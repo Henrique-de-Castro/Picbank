@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -6,35 +6,20 @@ import { PageEvent } from '@angular/material/paginator';
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss']
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent {
 
   @Input() length!: number;
-  pageIndex!: number;
-  pageSizeOptions!: number[];
-  pageSize!: number;
+  @Input() pageIndex: number = 0;
+  @Input() pageSize: number = 5;
+  @Input() pageSizeOptions: number[] = [5, 10, 20];
 
-  @Output() pageP = new EventEmitter<number>();
-  @Output() perPageP = new EventEmitter<number>();
+  @Output() pageEvent = new EventEmitter<PageEvent>();
 
-  constructor() {
-    this.pageIndex = 1;
-    this.pageSizeOptions = [5, 10, 20];
-    this.pageSize = 5;
-  }
+  constructor(){}
 
-  ngOnInit(): void {
-    this.pageP.emit(this.pageIndex);
-    this.perPageP.emit(this.pageSize);
-  }
+  ngOnInit(): void {}
 
-  onPageChange(event: PageEvent): void {
-    if (event.previousPageIndex !== undefined) {
-      this.pageIndex = event.pageIndex + 1;
-      this.pageP.emit(this.pageIndex);
-    }
-    if (event.pageSize !== this.pageSize) {
-      this.pageSize = event.pageSize;
-    }
-    this.perPageP.emit(this.pageSize);
+  sendPageEvent(event: PageEvent): void {
+    this.pageEvent.emit(event);
   }
 }

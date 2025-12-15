@@ -1,0 +1,21 @@
+<div class="overlay">
+  <div class="modalDelete">
+    <div class="contentDelete">
+      <div class="titleDelete">
+        <h1>Deletar Transação</h1>
+      </div>
+
+      <div mat-dialog-content class="confirmParagraph">
+        Tem certeza que deseja deletar os registros selecionados?
+        Essa ação não poderá ser desfeita.
+      </div>
+      <div mat-dialog-actions class="actionsDelete">
+        <button mat-button mat-dialog-close mat-raised-button class="btn-cancel">Cancelar</button>
+        <button mat-button mat-dialog-close cdkFocusInitial mat-raised-button color="warn" (click)="delete()">Deletar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loading">
+  <app-loading [show]="loading"></app-loading>
+</div>

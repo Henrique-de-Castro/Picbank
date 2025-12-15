@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { PaginatorComponent } from './paginator.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-
 @NgModule({
   declarations: [PaginatorComponent],
   imports: [

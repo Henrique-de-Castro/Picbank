@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TransacoesService } from 'src/app/core';
+import { PageEvent } from '@angular/material/paginator';
+import { delay, map } from 'rxjs/operators';
 
 interface TransacoesDataList {
   data: any[];
@@ -19,35 +21,56 @@ export class HomeComponent implements OnInit {
 
   dataTransactions!: TransacoesDataList;
   transactionsList: any[] = [];
-
-  page!: number;
-  perPage!: number;
-  pageSize!: number;
+  pageIndex: number = 0;
+  pageSize: number = 5;
+  pageSizeOptions: number[] = [5, 10, 20];
   loading: boolean = false;
+  deleteId!: string;
+  deleteActive: boolean = false;
 
   constructor(private service: TransacoesService) {}
 
   ngOnInit(): void {
     this.listTransactions();
-    this.loading = true;
-  }
-
-  setPage(pageIndex: number) {
-    this.page = pageIndex;
-    this.listTransactions();
-  }
-
-  setPerPage(pageSize: number) {
-    this.perPage = pageSize;
-    this.listTransactions();
   }
 
   listTransactions(): void {
-    this.service.listarTransacoes(this.page, this.perPage).subscribe((APIresponse) => {
-      this.dataTransactions = APIresponse;
-      this.transactionsList = APIresponse.data;
-      console.log(APIresponse);
-      this.loading = false;
+  const page = this.pageIndex + 1;
+  const perPage = this.pageSize;
+
+  this.loading = true;
+
+  this.service.listarTransacoes(page, perPage)
+    .pipe(
+      map((res: TransacoesDataList) => ({
+        data: res.data,
+        items: res.items
+      }))
+    )
+    .subscribe({
+      next: ({ data, items }) => {
+        this.transactionsList = data;
+        this.dataTransactions = { ...this.dataTransactions, items };
+      },
+      error: (err) => {
+        console.error('Erro ao buscar transações', err);
+        this.loading = false;
+      },
+      complete: () => {
+        this.loading = false;
+      }
     });
+}
+
+
+  onPageChange(event: PageEvent): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.listTransactions();
+  }
+
+  sendDeleteId(event: { id: string, deleteActive: boolean }): void {
+    this.deleteId = event.id;
+    this.deleteActive = event.deleteActive;
   }
 }

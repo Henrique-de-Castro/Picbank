@@ -7,6 +7,8 @@ import { TableTransactionsModule } from './table/table-transactions.module';
 import { BtnAddModule } from './btn-add/btn-add.module';
 import { PaginatorModule } from './paginator/paginator.module';
 import { LoadingModule } from 'src/app/components/loading/loading.module';
+import { DeleteModule } from './delete/delete.module';
+
 
 @NgModule({
   declarations: [HomeComponent],
@@ -16,7 +18,8 @@ import { LoadingModule } from 'src/app/components/loading/loading.module';
     TableTransactionsModule,
     BtnAddModule,
     PaginatorModule,
-    LoadingModule
+    LoadingModule,
+    DeleteModule
   ],
 })
 export class HomeModule {}

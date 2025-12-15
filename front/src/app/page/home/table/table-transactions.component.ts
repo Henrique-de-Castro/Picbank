@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
@@ -9,17 +9,17 @@ import { Router } from '@angular/router';
 })
 export class TableTransactionsComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'tipo', 'metodo', 'valor', 'data', 'editar'];
+  displayedColumns: string[] = ['id', 'tipo', 'metodo', 'valor', 'data', 'editar', 'deletar'];
   @Input() transactionsData!: any[]
-  loading: boolean = false;
 
   items: number = 5;
   itemsOptions!: [5, 10, 20];
   pages!: number;
   pageEvent!: PageEvent;
 
-  constructor(private router: Router) {
-  }
+  @Output() deleteId = new EventEmitter<{id: string, deleteActive: boolean}>();
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -28,7 +28,13 @@ export class TableTransactionsComponent implements OnInit {
   setItemsOptions(items: number){
     this.items = items;
   }
-  sendId(id: number){
+
+  sendIdUpdate(id: number){
     this.router.navigate(['/editar', id]);
+  }
+
+  sendIdDelete(id: string){ {
+    this.deleteId.emit({ id: id, deleteActive: true });
+  }
   }
 }

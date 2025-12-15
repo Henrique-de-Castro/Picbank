@@ -1,22 +1,23 @@
-<div class="content" *ngIf="!loading">
-
-  <main class="main">
-
-    <btn-add></btn-add>
-
-    <div class="table">
-        <table-transactions [transactionsData]="transactionsList"></table-transactions>
-
-        <paginator
-          (pageP)="setPage($event)"
-          (perPageP)="setPerPage($event)"
-          [length]="dataTransactions.items">
-        </paginator>
+<div class="content">
+  <div class="button list">
+    <div class="btn-add">
+        <btn-add></btn-add>
     </div>
-
-  </main>
-
-</div>
-<div class="loading">
+  </div>
+  <div class="table list" *ngIf="!loading">
+    <table-transactions [transactionsData]="transactionsList" (deleteId)="sendDeleteId($event)"></table-transactions>
+    <paginator
+      [length]="dataTransactions?.items || 0"
+      [pageIndex]="pageIndex"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (pageEvent)="onPageChange($event)">
+    </paginator>
+  </div>
+  <div class="loading">
     <app-loading [show]="loading"></app-loading>
+  </div>
+  <div class="delete" *ngIf="deleteActive">
+    <delete [id]="deleteId"></delete>
+  </div>
 </div>

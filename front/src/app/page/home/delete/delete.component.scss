@@ -1,0 +1,65 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.modalDelete {
+  background-color: #FEFEFE;
+  height: 35vh;
+  width: 35vw;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentDelete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  width: 80%;
+  height: 70%;
+}
+
+.btn-cancel {
+  background-color: #D9D9D9;
+  color: #5B5B5B;
+}
+
+.confirmParagraph {
+  color: #919191;
+}
+
+.actionsDelete {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.actionsDelete button {
+  width: 10vw;
+}
+
+@media (max-width: 768px) {
+  .modalDelete {
+    width: 80vw;
+    height: auto;
+    padding: 20px;
+  }
+
+  .actionsDelete button {
+    width: 35%;
+  }
+}

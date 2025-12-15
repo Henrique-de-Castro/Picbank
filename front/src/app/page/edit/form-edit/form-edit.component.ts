@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TransacoesService } from 'src/app/core/services/transacoes.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-edit',
@@ -34,7 +35,7 @@ export class FormEditComponent implements OnInit {
         this.id = param.get('id');
 
         if (this.id) {
-          this.service.buscarTransacao(this.id).subscribe(
+          this.service.buscarTransacao(this.id).pipe(delay(1000)).subscribe(
               {
               next: (data) => {console.log(data)
                 this.form.setValue({
@@ -49,7 +50,7 @@ export class FormEditComponent implements OnInit {
                 this.loading = false;
                 alert('Não foi possível carregar os dados da transação! Erro na requisição.');
               }
-            }
+              }
           );
         }
     }
