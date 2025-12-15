@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TransacoesService } from 'src/app/core/services/transacoes.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { delay } from 'rxjs/operators';
+
+import { delay, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-form-edit',
@@ -16,6 +18,8 @@ export class FormEditComponent implements OnInit {
   id!: string | null;
   loading: boolean = false;
 
+  unsubscribe$: Subject<void>;
+
   constructor(private formBuilder: FormBuilder, private service: TransacoesService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.form = this.formBuilder.group({
       tipo: ['', [Validators.required, Validators.minLength(3)]],
@@ -25,6 +29,8 @@ export class FormEditComponent implements OnInit {
     });
     this.enabledButton
     = 'accent'
+
+    this.unsubscribe$ = new Subject<void>();
   }
 
   ngOnInit(): void {
@@ -35,7 +41,7 @@ export class FormEditComponent implements OnInit {
         this.id = param.get('id');
 
         if (this.id) {
-          this.service.buscarTransacao(this.id).pipe(delay(1000)).subscribe(
+          this.service.buscarTransacao(this.id).pipe(delay(1000), takeUntil(this.unsubscribe$)).subscribe(
               {
               next: (data) => {console.log(data)
                 this.form.setValue({
@@ -81,5 +87,11 @@ export class FormEditComponent implements OnInit {
       this.enabledButton = 'disabled'
     }
     return this.enabledButton = 'accent'
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destruindo componente e finalizando inscrições');
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

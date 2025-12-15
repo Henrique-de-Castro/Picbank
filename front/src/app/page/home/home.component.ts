@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TransacoesService } from 'src/app/core';
 import { PageEvent } from '@angular/material/paginator';
-import { delay, map } from 'rxjs/operators';
+
+import { delay, map, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 interface TransacoesDataList {
   data: any[];
@@ -28,7 +30,11 @@ export class HomeComponent implements OnInit {
   deleteId!: string;
   deleteActive: boolean = false;
 
-  constructor(private service: TransacoesService) {}
+  unsubscribe$: Subject<void>;
+
+  constructor(private service: TransacoesService) {
+    this.unsubscribe$ = new Subject<void>();
+  }
 
   ngOnInit(): void {
     this.listTransactions();
@@ -42,10 +48,12 @@ export class HomeComponent implements OnInit {
 
   this.service.listarTransacoes(page, perPage)
     .pipe(
+      delay(1000),
       map((res: TransacoesDataList) => ({
         data: res.data,
         items: res.items
-      }))
+      })),
+      takeUntil(this.unsubscribe$)
     )
     .subscribe({
       next: ({ data, items }) => {
@@ -60,8 +68,7 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       }
     });
-}
-
+  }
 
   onPageChange(event: PageEvent): void {
     this.pageIndex = event.pageIndex;
@@ -72,5 +79,11 @@ export class HomeComponent implements OnInit {
   sendDeleteId(event: { id: string, deleteActive: boolean }): void {
     this.deleteId = event.id;
     this.deleteActive = event.deleteActive;
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destruindo componente e finalizando inscrições');
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

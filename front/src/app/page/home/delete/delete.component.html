@@ -10,7 +10,7 @@
         Essa ação não poderá ser desfeita.
       </div>
       <div mat-dialog-actions class="actionsDelete">
-        <button mat-button mat-dialog-close mat-raised-button class="btn-cancel">Cancelar</button>
+        <button mat-button mat-dialog-close mat-raised-button class="btn-cancel" (click)="cancel()">Cancelar</button>
         <button mat-button mat-dialog-close cdkFocusInitial mat-raised-button color="warn" (click)="delete()">Deletar</button>
       </div>
     </div>

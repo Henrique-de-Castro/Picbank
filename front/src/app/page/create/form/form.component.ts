@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TransacoesService } from 'src/app/core/services/transacoes.service';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -15,6 +16,8 @@ export class FormComponent implements OnInit {
   @Input() id!: number;
   loading: boolean = false;
 
+  unsubscribe$: Subject<void>;
+
   constructor(private formBuilder: FormBuilder, private service: TransacoesService, private router: Router) {
     this.form = this.formBuilder.group({
       tipo: ['', [Validators.required, Validators.minLength(3)]],
@@ -24,6 +27,8 @@ export class FormComponent implements OnInit {
     });
     this.enabledButton
     = 'accent'
+
+    this.unsubscribe$ = new Subject<void>();
   }
 
   ngOnInit(): void {}
@@ -32,7 +37,7 @@ export class FormComponent implements OnInit {
     this.loading = true;
 
     if (this.form.valid) {
-      this.service.salvarTransacoes(this.form.value).subscribe(
+      this.service.salvarTransacoes(this.form.value).pipe(takeUntil(this.unsubscribe$)).subscribe(
         {
           next: (response) => {// console.log(response);
             alert('Transação salva com sucesso!');
@@ -54,5 +59,11 @@ export class FormComponent implements OnInit {
       this.enabledButton = 'disabled'
     }
     return this.enabledButton = 'accent'
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destruindo componente e finalizando inscrições');
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
