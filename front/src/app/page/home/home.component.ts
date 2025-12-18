@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { TransacoesService } from 'src/app/core';
+import { Component, OnInit } from '@angular/core';
+import { TransacoesService } from '../../core/services/transacoes.service';
 import { PageEvent } from '@angular/material/paginator';
 
 import { delay, map, takeUntil } from 'rxjs/operators';

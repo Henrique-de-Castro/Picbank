@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TransacoesService } from 'src/app/core/services/transacoes.service';
+import { TransacoesService } from '../../../core/services/transacoes.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { delay, Subject, takeUntil } from 'rxjs';

@@ -10,8 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormModule } from './page/create/form/form.module';
 import { LoadingModule } from './components/loading/loading.module';
 
+import { LOCALE_ID} from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,6 +29,11 @@ import { LoadingModule } from './components/loading/loading.module';
     FormModule,
     LoadingModule
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [
+    AppComponent
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
+  ]
 })
 export class AppModule {}

@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoadingModule } from 'src/app/components/loading/loading.module';
+import { LoadingModule } from '../../../components/loading/loading.module';
 
 @NgModule({
   declarations: [FormComponent],

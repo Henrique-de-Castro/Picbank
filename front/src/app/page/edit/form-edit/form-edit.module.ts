@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import { FormEditComponent } from './form-edit.component';
-import { LoadingModule } from 'src/app/components/loading/loading.module';
+import { LoadingModule } from '../../../components/loading/loading.module';
 
 @NgModule({
   declarations: [FormEditComponent],

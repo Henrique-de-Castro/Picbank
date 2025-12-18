@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { TransacoesService } from 'src/app/core/services/transacoes.service';
+import { TransacoesService } from '../../../core/services/transacoes.service';
 
 import { Router } from '@angular/router';
 import { delay, takeUntil, Subject } from 'rxjs';
